@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Metadatos-->
+  <meta charset="UTF-8">
+  <meta name="author" content="Emerson Automation Solutions">
+  <meta name="description" content="Saturated steam calculator">
+  <meta name="keywords" content="Calculator, Water Properties, Steam">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Title-->
+  <title>SPENCE | Pressure Properties Calculator</title>
+
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" href="./SPENCE-LOGO.png">
+
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!--CSS-->
+  <link href="/style.css" rel="stylesheet">
+
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    
+   
+
+    <style class="navbar">
+    /*Navbar*/
+.container-fluid {
+    padding: 1rem;
+    background-color: #ffffff;
+    
+}
+
+.logo {
+    max-width: 6.5rem;
+}
+
+
+.logo-menu {
+    max-width: 7rem;
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 1.5rem;
+    
+}
+
+@media screen and (max-width:1023px) {
+    .navbar-toggler {
+    display: block;
+    }
+    
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 120, 11, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+
+.offcanvas-header {
+    padding: 2rem;
+}
+
+.offcanvas-body {
+    padding: 2rem;
+}
+    </style>
+
+<style class="body">
+    h1{
+        font-family: "Mukta", system-ui;
+        font-weight: 700;
+        font-style: normal;
+        color: #024605;
+        font-size: 2rem;
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .text-semibold {  
+     font-family: "Mukta", system-ui;
+     font-weight: 600;
+     font-style: normal;
+     font-size: 1.4rem;
+     color: #1E7A22;
+
+    }
+
+    .navbar-nav {
+     padding-top: 1rem;
+    }
+
+    .nav-item {
+     padding-top: 0.7rem;
+    }
+
+    .nav-link {
+    font-size: 1.1rem;
+    font-family: "Mukta", system-ui;
+    font-weight: 300;
+    font-style: normal;
+    color: #024605;
+    }
+
+    .form-label {
+    font-family: "Mukta", system-ui;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.3rem;
+    color: #086E0C;
+    }
+
+    .form-control {
+    font-family: "Mukta", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    
+    }
+
+    .form-select {
+    font-family: "Mukta", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    color: #575e57;
+    }
+
+    .option-ch {
+    font-family: "Mukta", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+    color: #aaaaaa;
+    background-color: #cecece;
+    }
+
+    .option {
+    font-family: "Mukta", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    color: #6a9670;
+    }
+
+    .alert {
+    font-size: 1.1rem;
+    font-family: "Mukta", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    }
+
+</style>
+
+
+
+<style class="buttons">
+    .enter-pressure {
+    padding: 1.5rem;
+    }
+
+    .row {
+    justify-content: center;
+    }
+
+    .unit-selection {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    }
+
+    .bt {
+    padding: 1.2rem;
+    
+    }
+
+    .btn-calculate {
+    background-color: #024605;
+    color: #ffffff;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.2rem;
+    font-family: "Mukta", system-ui;
+    font-weight: 500;
+    font-style: normal;
+    }
+
+    .bt-clean {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 2.5rem;
+    
+    }
+
+    .btn-clean {
+    background-color: #dbf5dd2a;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    font-family: "Mukta", system-ui;
+    font-weight: 450;
+    font-style: normal;
+    color: #024605;
+    }
+
+    h5 {
+    font-size: 1.5rem;
+    font-family: "Mukta", system-ui;
+    font-weight: 650;
+    font-style: normal;
+    color: #1E7A22;
+    text-align: center;
+    padding-top: 0.2rem;
+    
+    }
+
+
+</style>
+
+<style class="results"> 
+
+         .list-group-item {
+        padding: 1rem;
+        border-bottom: #024605;
+         }
+
+         .rs {
+        color: #000000;
+        font-family: "Mukta", system-ui;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 1.1rem;
+        
+         }
+
+         .panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 2rem;
+        padding-bottom: 0.5rem;
+         }
+
+         .label-input {
+            color: #086E0C;
+        font-family: "Mukta", system-ui;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1.2rem;
+         }
+
+         .nm {
+            color: #000000;
+        font-family: "Mukta", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.2rem;
+         }
+</style>
+
+<style class="footer">
+    .footer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  margin-top: 4rem;
+  background-color: #ecf5ec;
+  height: auto;
+  padding: 2rem;
+  grid-gap: 1rem;
+  } 
+    
+  .logo-footer {
+  max-width: 10rem;
+  
+  }
+  
+  .brand-footer {
+  grid-column: 2 / 3;
+  grid-row: 2/ 3;
+  }
+  
+  .copyright {
+  grid-column: 1 / -1;
+  grid-row: 4/ 5;
+  padding-top: 1.5rem;
+  
+  }
+  
+  .rights {
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+  color: #536779;
+  font-family: "Mukta", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  font-style: normal;
+  
+  }
+  
+ 
+  
+  .logo-footer {
+    max-width: 9rem;
+  
+  }
+  
+ 
+  
+  
+  
+  </style>
+
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar shadow-sm ">
+        <div class="container-fluid">
+            <a class="" href="https://www.spencevalve.com/en-us">
+              <img class="logo" src="./SPENCE-LOGO.png" alt="Logo_SPENCE">
+              
+            </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <img class="logo-menu" src="./SPENCE-LOGO.png" alt="logo-menu">    
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li>
+              <span class="text-semibold  subtitle">Calculators</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 " aria-current="page" href="./saturated-steam-pressure.html">Saturated Steam Pressure</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="./saturated-steam-temperature.html">Saturated Steam Temperature</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="./superheated-steam.html">Superheated Steam</a>
+            </li>
+          </ul>
+          </a>
+        </div>
+      </nav>
+
+      <!--List group-->
+     
+      
+  
+    <div class="container-fluid">
+        <h1>Saturated Steam Pressure</h1>
+        <div class="row">
+            <div class="col-lg-6 col-md-9 col-sm-10">
+                <!-- Formulario de entrada -->
+                <form id="pressureForm">
+                    <div class="enter-pressure">
+                        <label for="pressure" class="form-label">Enter Pressure</label>
+                        <input type="number" class="form-control" id="pressure" placeholder="Enter pressure value" required>
+                    </div>
+
+                    <div class="unit-selection ">
+                        <label for="pressure_unit" class="form-label">Select Pressure Unit</label>
+                        <select class="form-select" id="pressure_unit" required>
+                            <option class="option-ch desactived" value="">Choose unit</option>
+                            <option class="option" value="Pa">Pa</option>
+                            <option class="option" value="kPa">kPa</option>
+                            <option class="option" value="MPa">MPa</option>
+                            <option class="option" value="bar">bar</option>
+                            <option class="option" value="atm">atm</option>
+                        </select>
+                    </div>
+
+                    <div id="error" class="alert alert-danger d-none" role="alert">
+                        Error: <span id="error-message"></span>
+                    </div>
+
+                    <div class="bt">
+                        <button type="submit" class="btn-calculate">Calculate</button>
+                    </div>
+                </form>
+
+             <!-- Botón para limpiar -->
+             <div class="bt-clean">
+                <button type="button" id="cleanBtn" class="btn btn-clean">Clean</button>
+            </div>
+            
+
+                <!-- Resultados -->
+                <div id="results" class="results">
+                    <h5>Results</h5>
+                    <ul class="list">
+                    <div class="panel border-bottom">
+                        <div class="label-input list-group-item">Temperature:</div>
+                        <div class="nm"><span id="temperature">-</span> <span class="rs">°C</span></div>
+                    </div>
+                    <div class="panel border-bottom">
+                         <div class="label-input list-group-item">Latent Heat of Vapor:</div>
+                         <div class="nm"><span id="latent_heat">-</span><span class="rs">kJ/kg</span></div>
+                    </div>
+
+                    <div class="panel border-bottom">
+                        <div class="label-input list-group-item">Specific Enthalpy (Vapor):</div>
+                        <div class="nm"><span id="enthalpy_vapor">-</span><span class="rs">kJ/kg</span></div>
+                   </div>
+
+                   <div class="panel border-bottom">
+                    <div class="label-input list-group-item">Specific Enthalpy (Water):</div>
+                    <div class="nm"><span id="enthalpy_water">-</span><span class="rs">kJ/kg</span></div>
+               </div>
+
+               <div class="panel border-bottom">
+                <div class="label-input list-group-item">Specific Volume (Vapor):</div>
+                <div class="nm"><span id="volume_vapor">-</span><span class="rs">m³/kg</span></div>
+           </div>
+
+           <div class="panel border-bottom">
+            <div class="label-input list-group-item">Specific Volume (Water):</div>
+            <div class="nm"><span id="volume_water">-</span><span class="rs">m³/kg</span></div>
+       </div>
+                    </ul>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+     <!--Footer-->
+     <div class="footer">
+        <div class="brand-footer">
+          <a href="https://www.spencevalve.com/en-us"><img class="logo-footer" src="./SPENCE-LOGO.png" alt="logo-footer"></a>
+        </div>
+        
+        <div class="copyright">
+         <p class="rights">©2024 SPENCE VALVE. All rights reserved</p>
+        </div>
+        </div>
+
+    <script src="./calculate_pressure.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
